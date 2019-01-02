@@ -11,6 +11,7 @@ mongoose.connect('mongodb://node-api:'+process.env.MONGO_ATLAS_PW+'@cluster0-sha
     useNewUrlParser: true
 });
 
+
 const productRoutes = require('./api/routes/products');
 const orderRoutes = require('./api/routes/orders');
 
@@ -18,6 +19,7 @@ const port = process.env.port || 3000;
 
 mongoose.Promise = global.Promise;
 
+server.use('/uploads', express.static('uploads'));
 server.use(morgan('dev'));
 server.use(bodyParser.urlencoded({extended: false}));
 server.use(bodyParser.json());
