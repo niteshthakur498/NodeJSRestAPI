@@ -3,6 +3,8 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
+
+
 const server = express();
 mongoose.connect('mongodb://node-api:'+process.env.MONGO_ATLAS_PW+'@cluster0-shard-00-00-vmpam.mongodb.net:27017,cluster0-shard-00-01-vmpam.mongodb.net:27017,cluster0-shard-00-02-vmpam.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true',
 {
@@ -13,6 +15,8 @@ const productRoutes = require('./api/routes/products');
 const orderRoutes = require('./api/routes/orders');
 
 const port = process.env.port || 3000;
+
+mongoose.Promise = global.Promise;
 
 server.use(morgan('dev'));
 server.use(bodyParser.urlencoded({extended: false}));
