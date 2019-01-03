@@ -14,6 +14,7 @@ mongoose.connect('mongodb://node-api:'+process.env.MONGO_ATLAS_PW+'@cluster0-sha
 
 const productRoutes = require('./api/routes/products');
 const orderRoutes = require('./api/routes/orders');
+const userRoutes = require('./api/routes/users');
 
 const port = process.env.port || 3000;
 
@@ -38,6 +39,7 @@ server.use((req, res, next) =>{
 
 server.use('/products',productRoutes);
 server.use('/orders',orderRoutes);
+server.use('/user',userRoutes);
 
 server.use((req, res, next) => {
     const error = new Error('Not Found');
